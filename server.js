@@ -18,13 +18,6 @@ const io = require("socket.io")(server, {
   },
 });
 
-// const corsOptions = {
-//   origin: "*",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   credentials: true,
-// };
-
-// app.use(cors(corsOptions));
 app.use(cors());
 
 const userSocketMap = {};
@@ -78,7 +71,6 @@ io.on("connection", (socket) => {
     delete userSocketMap[socket.id];
   });
 
-  console.log("userSocketMap", userSocketMap);
 });
 
 app.get("/", (req, res) => {
@@ -88,9 +80,7 @@ app.get("/", (req, res) => {
 app.use("/api", routes);
 
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-// app.listen(PORT, (err) => {
-//   console.log("server running");
-// });
+
 
 // Mongoose connection
 const connectToMongoDB = async () => {
@@ -100,11 +90,9 @@ const connectToMongoDB = async () => {
       useUnifiedTopology: true,
     });
     console.log("Connected to MongoDB");
-    // Your further code goes here
   } catch (error) {
     console.error("Error connecting to MongoDB:", error.message);
   }
 };
 
-// Call the function to connect
 connectToMongoDB();
