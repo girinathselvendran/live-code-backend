@@ -11,15 +11,15 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
+app.use(cors());
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: "*",
+    origin: "https://live-code-three.vercel.app",
     method:["GET","POST"]
   },
 });
 
-app.use(cors());
 
 const userSocketMap = {};
 function getAllConnectedClients(roomId) {
