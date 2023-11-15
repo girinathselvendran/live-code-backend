@@ -22,7 +22,7 @@ const createUser = async (req, res) => {
     }
   } catch (error) {
     console.log("error", error.message);
-    return res.status(200).json({
+    return res.status(500).json({
       status: 500,
       data: error.message,
     });
@@ -43,8 +43,8 @@ const loginUser = async (req, res) => {
           info: emailId,
         });
       else {
-        return res.status(200).json({
-          status: 200,
+        return res.status(400).json({
+          status: 400,
           data: "Wrong Password",
         });
       }
