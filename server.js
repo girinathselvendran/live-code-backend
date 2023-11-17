@@ -22,7 +22,7 @@ const io = require("socket.io")(server, {
 
 
 const userSocketMap = {};
-function getAllConnectedClients(roomId) {
+const getAllConnectedClients =(roomId)=> {
   // Map
   return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map(
     (socketId) => {

@@ -2,7 +2,7 @@ const { User } = require("../models/user");
 
 const createUser = async (req, res) => {
   try {
-    const { emailId, password } = req.body;
+    const { emailId } = req.body;
 
     const findUser = await User.findOne({ emailId });
 
@@ -34,7 +34,7 @@ const loginUser = async (req, res) => {
     const { emailId, password } = req.body;
 
     const findUser = await User.findOne({ emailId: emailId });
-    console.log("findUser", findUser);
+
     if (findUser) {
       if (findUser.password === password)
         return res.status(200).json({
